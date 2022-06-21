@@ -1,3 +1,27 @@
-.App {
-  text-align: center;
+*{
+  margin: 0;
+  padding: 0;
 }
+
+
+
+.App {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+::-webkit-scrollbar{
+  width: 0.6vw;
+}
+
+/* ::-webkit-scrollbar-track{
+  background-color: #000;
+} */
+
+::-webkit-scrollbar-thumb{
+  color: #333333;
+}
+

@@ -1,0 +1,37 @@
+.navbar{
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    background-color: aqua;
+    position: sticky;
+    height: 10vh;
+    
+}
+
+.navbarLogo{
+    display: flex;
+    flex: 2;
+    align-items: center;
+    justify-content: center;
+    background-color: yellowgreen;
+    height: 100%;
+}
+
+.navbarLinks{
+    display: flex;
+    flex: 5;
+    align-items: center;
+    justify-content: space-between;
+    background-color: beige;
+    height: 100%;
+    /* gap: 5px; */
+}
+
+.navbarLogin{
+    display: flex;
+    flex: 3;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: aquamarine;
+    height: 100%;
+}
