@@ -2,10 +2,23 @@
     display: flex;
     align-items: center;
     /* justify-content: center; */
-    background-color: aqua;
+    background-color: #181818;
     position: sticky;
-    height: 10vh;
+    color: white;
+    height: 7vh;
     
+}
+
+.navbar a{
+    color: white;
+}
+
+.navbar a:visited{
+    color: white;
+}
+
+.navbar a :hover{
+    color: #7828c8;
 }
 
 .navbarLogo{
@@ -13,7 +26,8 @@
     flex: 2;
     align-items: center;
     justify-content: center;
-    background-color: yellowgreen;
+    margin-top: 0.5%;
+    /* background-color: yellowgreen; */
     height: 100%;
 }
 
@@ -21,17 +35,19 @@
     display: flex;
     flex: 5;
     align-items: center;
-    justify-content: space-between;
-    background-color: beige;
+    justify-content: center;
+    /* justify-content: space-between; */
+    /* background-color: pink; */
     height: 100%;
-    /* gap: 5px; */
+    gap: 8%;
 }
 
 .navbarLogin{
     display: flex;
     flex: 3;
     align-items: center;
-    justify-content: space-evenly;
-    background-color: aquamarine;
+    justify-content: center;
+    gap: 8%;
+    /* background-color: #181818; */
     height: 100%;
 }

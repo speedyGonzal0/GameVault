@@ -1,0 +1,14 @@
+.gameSummaryTile{
+    background-color: #181818;
+    display: flex;
+    width: 70%;
+    height: 10em;
+    border-radius: 2em;
+    transition: all 0.4s ease;
+}
+
+.gameSummaryTile:hover{
+    box-shadow: 0px 5px 20px 0px #181818;
+    transform: scale(1.02);
+    transition: all 0.4s ease;
+}

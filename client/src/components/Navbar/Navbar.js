@@ -1,23 +1,24 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 import './Navbar.css'
+import { Button } from '@nextui-org/react';
 
 function Navbar() {
   return (
     <nav className='navbar'>
         <div className="navbarLogo">
-            GameVault
+            <h2>GameVault</h2>
         </div>
         <div className="navbarLinks">
-            <Link to="/">Home</Link>
-            <Link to="allgames">All games</Link>
-            <Link to="gamesearch">Search games</Link>
-            <Link to="usersearch">Search users</Link>
-            <Link to="about">About us</Link>         
+            <Link to="/"> <b>Home</b> </Link>
+            <Link to="allgames"> <b>All games</b> </Link>
+            <Link to="searchgames"> <b>Search games</b> </Link>
+            <Link to="searchusers"> <b>Search users</b> </Link>
+            <Link to="about"> <b>About us</b> </Link>         
         </div>
         <div className="navbarLogin">
-            <button>Log in</button>
-            <button>Sign up</button>
+            <Button size = "sm" color="secondary">Log in</Button>
+            <Button size = "sm" bordered color = "secondary">Sign up</Button>
         </div>
     </nav>
   )

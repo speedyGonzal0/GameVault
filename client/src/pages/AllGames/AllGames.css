@@ -1,0 +1,11 @@
+.allGamesPage{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.allGamesPage h1{
+    margin: 3% 0  3% 0;
+}
