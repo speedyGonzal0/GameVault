@@ -1,0 +1,78 @@
+.viewCommentTile{
+    display: flex;
+    flex-direction: column;
+    background-color: #181818;
+    /* border: 1px #adb5bd solid; */
+    border-radius: 1.25em;
+    gap: 1em;
+    flex-shrink: 0;
+    min-height: 8em;
+    width: 80%;
+    align-items: center;
+    padding: 1% 2% 1% 2%;
+}
+
+.viewCommentInfo{
+    display: flex;
+    gap: 1.25em;
+    align-items: center;
+    justify-content: flex-start;
+    /* background-color: aliceblue; */
+    width: 100%;
+}
+
+.viewCommentTxt{
+    display: flex;
+    /* background-color: aliceblue; */
+    border-radius: 1.25em;
+    padding: 1%;
+    width: 100%;
+    border: 1px #adb5bd solid;
+}
+
+.viewCommentInteractions{
+    /* background-color: #adb5bd; */
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 1.5em;
+}
+
+.viewCommentUp{
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    /* color: #7828c8; */
+    transition: all 0.2s ease;
+}
+
+
+.viewCommentUp :hover{
+    color: #7828c8;
+    transition: all 0.2s ease;
+    /* bottom: 5%; */
+}
+
+.viewCommentDown{
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    transition: all 0.2s ease;
+}
+
+.viewCommentDown :hover{
+    color:#f4a261;
+    transition: all 0.2s ease;
+}
+
+.viewCommentDel{
+    display: flex;
+    /* background-color: #7828c8; */
+    border-radius: 0.25em;
+    transition: all 0.2s ease;
+}
+
+.viewCommentDel :hover{
+    color: #ef233c;
+    transition: all 0.2s ease;
+}

@@ -1,11 +1,15 @@
 .allGamesPage{
     display: flex;
     flex-direction: column;
-    color: white;
+    /* color: white; */
+    height: 93vh;
     /* justify-content: center; */
     align-items: center;
+    overflow-y: scroll;
+    padding: 3% 0  3% 0;
+    gap: 1.5em;
 }
 
-.allGamesPage h1{
-    margin: 3% 0  3% 0;
-}
+/* .allGamesPage h1{
+    margin: 0 0  3% 0;
+} */

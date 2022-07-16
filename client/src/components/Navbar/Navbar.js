@@ -1,13 +1,15 @@
 import React from 'react'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import './Navbar.css'
 import { Button } from '@nextui-org/react';
 
 function Navbar() {
+
+  let navigate = useNavigate();
   return (
     <nav className='navbar'>
         <div className="navbarLogo">
-            <h2>GameVault</h2>
+            <h2 onClick = {() => navigate("/")}>GameVault</h2>
         </div>
         <div className="navbarLinks">
             <Link to="/"> <b>Home</b> </Link>
@@ -17,7 +19,7 @@ function Navbar() {
             <Link to="about"> <b>About us</b> </Link>         
         </div>
         <div className="navbarLogin">
-            <Button size = "sm" color="secondary">Log in</Button>
+            <Button size = "sm" shadow color="secondary">Log in</Button>
             <Button size = "sm" bordered color = "secondary">Sign up</Button>
         </div>
     </nav>

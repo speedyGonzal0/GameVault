@@ -1,6 +1,6 @@
 use cse470_gamevault;
 
-drop table if exists users, admin, games, orders, comments, reports;
+drop table if exists users, admin, games, orders, comments, commentVote, reports;
 
 create table users(
 	name varchar(250) not null,
@@ -40,11 +40,20 @@ create table comments(
 	commentID varchar(10) unique not null,
     commentDetails text not null,
     commentDate date not null,
+    commentVotes int not null, # total no. of votes
     commentUserID varchar(10) not null,
     commentGameID int not null,
     primary key(commentID),
     foreign key(commentUserID) references users(userID),
     foreign key(commentGameID) references games(gameID)    
+);
+
+create table commentVote(
+	commentID varchar(10) not null,
+    commentVoterID varchar(10) not null,
+    commentVoteStatus int not null,    # 0 = no vote, 1 = upvote, 2 = downvote;
+    foreign key(commentID) references comments(commentID),
+    foreign key(commentVoterID) references users(userID)
 );
 
 
@@ -58,4 +67,5 @@ create table reports(
     foreign key(reportedUserID) references users(userID),
     foreign key(reportedCommentID) references comments(commentID)
 );
+
 

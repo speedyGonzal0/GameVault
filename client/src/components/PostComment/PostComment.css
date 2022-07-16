@@ -1,0 +1,23 @@
+.postCommentTile{
+    display: flex;
+    flex-shrink: 0;
+    width: 100%;
+    background-color: #181818;
+    /* border:2px #adb5bd solid; */
+    min-height: 8em;
+    border-radius: 1.25em;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    padding: 1% 0 1% 0;
+}
+
+.postCommentUser{
+    /* background-color: antiquewhite; */
+    /* height: 100%; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* gap: 0.5em; */
+}
