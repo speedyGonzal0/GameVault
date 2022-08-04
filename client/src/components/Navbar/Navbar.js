@@ -13,7 +13,7 @@ function Navbar() {
         </div>
         <div className="navbarLinks">
             <Link to="/"> <b>Home</b> </Link>
-            <Link to="allgames"> <b>All games</b> </Link>
+            <Link to="games"> <b>All games</b> </Link>
             <Link to="searchgames"> <b>Search games</b> </Link>
             <Link to="searchusers"> <b>Search users</b> </Link>
             <Link to="about"> <b>About us</b> </Link>         

@@ -9,6 +9,7 @@ import SearchUsers from './pages/SearchUsers/SearchUsers';
 import { NextUIProvider, createTheme } from '@nextui-org/react';
 import { useEffect } from 'react';
 import GameDetails from './pages/GameDetails/GameDetails';
+import ErrorPage from './pages/ErrorPage/ErrorPage';
 
 function App() {
 
@@ -39,11 +40,12 @@ function App() {
         <main className="App">
           <Routes>
             <Route path='/' element={<Home/>}/>
-            <Route path='/allgames' element={<AllGames/>}/>
+            <Route path='/games' element={<AllGames/>}/>
             <Route path='/searchgames' element={<SearchGames/>}/>
             <Route path='/gamedetails/:id' element={<GameDetails/>}/>
             <Route path='/searchusers' element={<SearchUsers/>}/>
             <Route path='/about' element={<About/>}/>
+            <Route path='*' element={<ErrorPage/>}/>
           </Routes>
         </main>
       </BrowserRouter>

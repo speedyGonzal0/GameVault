@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './ViewComment.css'
 import { FiUser } from 'react-icons/fi';
 import { BiUpvote, BiDownvote } from 'react-icons/bi';
@@ -6,28 +6,42 @@ import { AiOutlineDelete } from 'react-icons/ai';
 
 function ViewComment() {
 
+    const [belongsToUser, setbelongsToUser] = useState(true)
+
     const [upvote, setUpvote] = useState(false)
     const [downvote, setDownvote] = useState(false)
     const [votes, setVotes] = useState(0)
-
+    
     const handleUpvotes = () => {
+        
+        if(downvote){
+            setVotes(votes + 1)
+            setDownvote(false)
+        }
 
-        if( !upvote ){
-            setVotes(votes + 1);
+        if(!upvote){
+            setVotes(votes + 1)
+            setUpvote(true)
         }
         else{
-            setVotes(votes - 1);
+            setVotes(votes - 1)
+            setUpvote(false)
         }
     }
 
     const handleDownvotes = () => {
-        setDownvote(!downvote)
-        
-        if( !downvote ){
-            setVotes(votes - 1);
+
+        if(upvote){
+            setVotes(votes - 1)
+            setUpvote(false)
+        }
+        if(!downvote){
+            setVotes(votes - 1)
+            setDownvote(true)
         }
         else{
-            setVotes(votes + 1);
+            setVotes(votes + 1)
+            setDownvote(false)
         }
     }
 
@@ -54,7 +68,7 @@ function ViewComment() {
                 <BiDownvote size="1.25em" color={downvote ? "#f4a261" : ""} cursor="pointer" onClick={ handleDownvotes }/>
                 <p>Downvote</p>
             </div>
-            <div className="viewCommentDel">
+            <div className="viewCommentDel" style={ belongsToUser ? {} : {display: "none"}}>
                 <AiOutlineDelete size="1.25em"/>
             </div>
         </div>
