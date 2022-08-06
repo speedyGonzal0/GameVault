@@ -53,3 +53,13 @@
     /* background-color: #181818; */
     height: 100%;
 }
+
+.navbarLoggedIn{
+    display: flex;
+    flex: 3;
+    align-items: center;
+    justify-content: center;
+    gap: 8%;
+    /* background-color: wheat; */
+    height: 100%;
+}

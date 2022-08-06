@@ -1,11 +1,20 @@
 import React from 'react'
 import { Link, useNavigate } from "react-router-dom";
 import './Navbar.css'
-import { Button } from '@nextui-org/react';
+import { Button, Dropdown, User, Text } from '@nextui-org/react';
+import { FiUser } from 'react-icons/fi'
+import { BiBookmarkAltPlus } from 'react-icons/bi';
+import Cart from '../Cart/Cart';
 
-function Navbar() {
+function Navbar( {login} ) {
 
   let navigate = useNavigate();
+
+  let id = 1;
+
+  const handleLogout = () => {
+    navigate("/")
+  }
   return (
     <nav className='navbar'>
         <div className="navbarLogo">
@@ -18,10 +27,49 @@ function Navbar() {
             <Link to="searchusers"> <b>Search users</b> </Link>
             <Link to="about"> <b>About us</b> </Link>         
         </div>
-        <div className="navbarLogin">
+        {login ? 
+          <div className="navbarLoggedIn">
+            <Dropdown placement="bottom-left">
+              <Dropdown.Trigger>
+                <User
+                  bordered
+                  as="button"
+                  size="lg"
+                  color="secondary"
+                  name="Username"
+                  text="Username"
+                  pointer
+                  squared
+                />
+              </Dropdown.Trigger>
+              <Dropdown.Menu color="secondary" aria-label="User Actions">
+                <Dropdown.Item key="profile" css={{ height: "$18" }}>
+                  <Text b color="inherit" css={{ d: "flex" }}>
+                    Signed in as
+                  </Text>
+                  <Text b color="inherit" css={{ d: "flex" }}>
+                    zoey@example.com
+                  </Text>
+                </Dropdown.Item>
+                <Dropdown.Item key="settings" icon={<FiUser/>}>
+                  <p onClick={() => navigate(`/user/${id}`)}>View Profile</p>
+                </Dropdown.Item>
+                <Dropdown.Item key="wishlist" icon={<BiBookmarkAltPlus/>}> <p onClick={() => navigate(`/wishlist/${id}`)}>Wishlist</p></Dropdown.Item>
+                <Dropdown.Item key="logout" color="error" withDivider>
+                  <div onClick={ handleLogout }> <b>Log Out</b> </div>          
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+            <Cart/>
+            
+          </div>
+           :
+          <div className="navbarLogin">
             <Button size = "sm" shadow color="secondary">Log in</Button>
             <Button size = "sm" bordered color = "secondary">Sign up</Button>
-        </div>
+          </div>
+        }
+        
     </nav>
   )
 }

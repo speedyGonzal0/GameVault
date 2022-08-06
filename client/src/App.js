@@ -7,11 +7,15 @@ import AllGames from './pages/AllGames/AllGames';
 import SearchGames from './pages/SearchGames/SearchGames';
 import SearchUsers from './pages/SearchUsers/SearchUsers';
 import { NextUIProvider, createTheme } from '@nextui-org/react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import GameDetails from './pages/GameDetails/GameDetails';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
+import UserProfile from './pages/UserProfile/UserProfile';
+import Wishlist from './pages/Wishlist/Wishlist';
 
 function App() {
+
+  const [isLoggedIn, setisLoggedIn] = useState(true)
 
   const theme = createTheme({
     type: "dark", // it could be "light" or "dark"
@@ -36,7 +40,7 @@ function App() {
   return (
     <NextUIProvider theme={theme}>
       <BrowserRouter>
-        <Navbar/>
+        <Navbar login={isLoggedIn}/>
         <main className="App">
           <Routes>
             <Route path='/' element={<Home/>}/>
@@ -45,6 +49,8 @@ function App() {
             <Route path='/gamedetails/:id' element={<GameDetails/>}/>
             <Route path='/searchusers' element={<SearchUsers/>}/>
             <Route path='/about' element={<About/>}/>
+            <Route path='/user/:id' element={<UserProfile/>}/>
+            <Route path='/wishlist/:id' element={<Wishlist/>}/>
             <Route path='*' element={<ErrorPage/>}/>
           </Routes>
         </main>

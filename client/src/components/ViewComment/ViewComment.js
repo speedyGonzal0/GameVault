@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import './ViewComment.css'
 import { FiUser } from 'react-icons/fi';
 import { BiUpvote, BiDownvote } from 'react-icons/bi';
