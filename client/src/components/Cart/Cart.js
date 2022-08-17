@@ -55,7 +55,7 @@ function Cart() {
                     </div>           
                 </div>
                 {cartitems.map( (item, idx) =>
-                    <CartItem item = {item} idx = {idx}/>
+                    <CartItem item = {item} key = {idx} idx={idx}/>
                  )}
 
                  {/* <div className="cartItemsTotal">

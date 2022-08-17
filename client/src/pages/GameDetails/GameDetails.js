@@ -85,7 +85,7 @@ function GameDetails() {
             />
         </div>
         <div className="gameDetailsComments">
-            <h3> User Comments </h3>
+            <h3> Comments </h3>
             <PostComment/>
             <ViewComment/>
             

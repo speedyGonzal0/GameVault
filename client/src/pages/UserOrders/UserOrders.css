@@ -1,4 +1,4 @@
-.wishlistContainer{
+.UserOrdersContainer{
     display: flex;
     flex-direction: column;
     /* color: white; */
@@ -10,7 +10,7 @@
     gap: 1.5em;
 }
 
-.wishlistTable{
+.userOrdersTable{
     /* display: flex; */
     width: 70%;
     flex-shrink: 0;

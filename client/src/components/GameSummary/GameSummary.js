@@ -1,6 +1,6 @@
 import React from 'react'
 import "./GameSummary.css"
-import { Button } from "@nextui-org/react";
+import { Button, Image } from "@nextui-org/react";
 import { useNavigate } from 'react-router-dom';
 
 function GameSummary() {
@@ -29,7 +29,7 @@ function GameSummary() {
           <p>Rating</p>
         </div>
         <div className="gameSummaryLinks">
-          <Button color = "secondary" bordered onClick={() => navigate(`/gamedetails/${id}`)}>View Game Details</Button>
+          <Button color = "secondary" bordered onClick={() => navigate(`/games/${id}`)}>View Game Details</Button>
           <Button color = "secondary">Rent Game</Button>
         </div>
       </div>

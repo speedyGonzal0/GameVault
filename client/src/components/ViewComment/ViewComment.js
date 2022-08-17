@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import './ViewComment.css'
 import { FiUser } from 'react-icons/fi';
 import { BiUpvote, BiDownvote } from 'react-icons/bi';
-import { AiOutlineDelete } from 'react-icons/ai';
+import { AiOutlineDelete, AiOutlineWarning } from 'react-icons/ai';
+import { Modal, Button } from "@nextui-org/react"
 
 function ViewComment() {
 
@@ -57,19 +58,24 @@ function ViewComment() {
             <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad recusandae sit odit id dolorum, asperiores delectus consectetur non neque voluptates numquam? Aspernatur repellendus animi neque placeat magni ea dolorem magnam.</p>
         </div>
         <div className="viewCommentInteractions">
-            <div className="viewCommentUp">
-                <p> Upvote </p>
-                <BiUpvote size="1.25em" color={upvote ? "#7828c8" : ""} cursor="pointer" onClick={ handleUpvotes }/>
-            </div>
-            <div className="viewCommentCount">
-                <p>{ votes }</p>
-            </div>
-            <div className="viewCommentDown">
-                <BiDownvote size="1.25em" color={downvote ? "#f4a261" : ""} cursor="pointer" onClick={ handleDownvotes }/>
-                <p>Downvote</p>
-            </div>
-            <div className="viewCommentDel" style={ belongsToUser ? {} : {display: "none"}}>
-                <AiOutlineDelete size="1.25em"/>
+            <div className="viewCommentInteractionsLeft">
+                <div className="viewCommentUp">
+                    <p> Upvote </p>
+                    <BiUpvote size="1.25em" color={upvote ? "#7828c8" : ""} cursor="pointer" onClick={ handleUpvotes }/>
+                </div>
+                <div className="viewCommentCount">
+                    <p>{ votes }</p>
+                </div>
+                <div className="viewCommentDown">
+                    <BiDownvote size="1.25em" color={downvote ? "#f4a261" : ""} cursor="pointer" onClick={ handleDownvotes }/>
+                    <p>Downvote</p>
+                </div>
+                <div className="viewCommentDel" style={ belongsToUser ? {} : {display: "none"}}>
+                    <AiOutlineDelete size="1.25em"/>
+                </div>
+            </div>         
+            <div className="viewCommentReport">
+                <Button size="sm" bordered color="error" iconRight={<AiOutlineWarning size="1.5em"/>}> Report </Button>
             </div>
         </div>
     </article>

@@ -1,4 +1,4 @@
-.wishlistContainer{
+.followingContainer{
     display: flex;
     flex-direction: column;
     /* color: white; */
@@ -10,11 +10,13 @@
     gap: 1.5em;
 }
 
-.wishlistTable{
-    /* display: flex; */
+.followingUsers{
+    display: flex;
+    /* background-color: beige; */
     width: 70%;
+    gap: 1.5em;
     flex-shrink: 0;
-    text-align: left;
-    /* background-color: #181818; */
-    /* background-color: antiquewhite; */
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    
 }
