@@ -14,6 +14,7 @@ import UserProfile from './pages/UserProfile/UserProfile';
 import Wishlist from './pages/Wishlist/Wishlist';
 import UserOrders from './pages/UserOrders/UserOrders';
 import Following from './pages/Following/Following';
+import VisitProfile from './pages/VisitProfile/VisitProfile';
 
 function App() {
 
@@ -47,15 +48,15 @@ function App() {
           <Routes>
             <Route path='/' element={<Home/>}/>
             <Route path='/games' element={<AllGames/>}/>
-            <Route path='/searchgames' element={<SearchGames/>}/>
+            {/* <Route path='/searchgames' element={<SearchGames/>}/> */}
             <Route path='/games/:id' element={<GameDetails/>}/>
             <Route path='/searchusers' element={<SearchUsers/>}/>
             <Route path='/about' element={<About/>}/>
             <Route path='/user' element={<UserProfile/>}/>
-            <Route path='/user/:id' element={<UserProfile/>}/>
-            <Route path='/wishlist' element={<Wishlist/>}/>
-            <Route path='/orders' element={<UserOrders/>}/>
-            <Route path='/following' element={<Following/>}/>
+            <Route path='/user/:id' element={<VisitProfile/>}/>
+            <Route path='/user/wishlist' element={<Wishlist/>}/>
+            <Route path='/user/orders' element={<UserOrders/>}/>
+            <Route path='/user/following' element={<Following/>}/>
             <Route path='*' element={<ErrorPage/>}/>
           </Routes>
         </main>

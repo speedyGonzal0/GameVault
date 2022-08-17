@@ -13,3 +13,25 @@
 /* .allGamesPage h1{
     margin: 0 0  3% 0;
 } */
+
+.allGamesPage input{
+    width: 70%;
+    height: 8%;
+    border:2px #adb5bd solid;
+    background-color: transparent;
+    font-family: "Space Grotesk", sans-serif !important; 
+    font-weight: 400;
+    color: #adb5bd !important;
+    text-align: left;
+    padding: 0 1% 0 1%;
+    border-radius: 1.25em;
+    transition: 0.4s all ease;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.allGamesPage input:focus{
+    /* border:2px white solid; */
+    transition: 0.4s all ease;
+    background-color: #181818;
+} 

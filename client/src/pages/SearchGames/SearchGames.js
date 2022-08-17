@@ -1,8 +1,13 @@
 import React from 'react'
+import "./SearchGames.css"
+import { Button, Input } from "@nextui-org/react";
 
 function SearchGames() {
   return (
-    <div>SearchGames</div>
+    <main className='searchGamesContainer'>
+      <h1>Search Games</h1>
+
+    </main>
   )
 }
 

@@ -1,0 +1,90 @@
+.visitProfileContainer{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    /* background-color: antiquewhite; */
+    height: 93vh;
+    overflow-y: auto;
+    /* flex-wrap: nowrap; */
+    gap: 2em;
+    padding: 3% 0 3% 0;
+    flex-shrink: 0;
+    /* justify-content: center; */
+}
+
+.visitProfileTop{
+    display: flex;
+    width: 70%;
+    height: 25%;
+    /* background-color: aqua; */
+    gap: 1.5em;
+    background-color: #181818;
+    border-radius: 1.25em;
+    flex-shrink: 0;
+}
+
+.visitProfileImg{
+    display: flex;
+    height: 100%;
+    /* background-color: aquamarine; */
+    flex: 1;
+    padding: 1em;
+}
+
+.visitProfileImg img{
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 1.25em;
+    object-fit: cover;
+}
+
+.visitProfileDesc{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    /* background-color: aqua; */
+    flex: 2;
+    padding: 3% 0 3% 0;
+    gap: 1.5em;
+}
+
+.visitProfileInfo{
+    display: flex;
+    gap: 1.5em;
+    /* background-color:aliceblue; */
+}
+
+.visitProfileInteractions{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    border-radius: 0 1.25em 1.25em 0;
+    border:2px #adb5bd solid;
+    
+}
+
+.visitProfileGames{
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5em;
+    /* background-color: #adb5bd; */
+    width: 100%;
+}
+
+.visitProfileComments{
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5em;
+    /* background-color: #adb5bd; */
+    width: 70%;
+}
