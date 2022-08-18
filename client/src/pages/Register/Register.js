@@ -3,8 +3,11 @@ import "./Register.css"
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { Input, Button } from '@nextui-org/react';
+import axios from 'axios';
 
 function Register() {
+
+  let navigate = useNavigate();
 
   const [name, setName] = useState()
   const [email, setEmail] = useState()
@@ -13,7 +16,22 @@ function Register() {
 
   const submitReg = (e) => {
     e.preventDefault();
-    console.log("reg submit")
+    axios.post("http://localhost:8080/user/register", {
+      name: name,
+      email: email,
+      password: pass,
+      phone: phn
+    }).then((response) => {
+      if (response.data.message) {
+        console.log(response.data.message);
+        navigate("/login")
+      }
+      else {
+        console.log(response.data);
+      }
+    });
+    // console.log("game submit")
+    e.target.reset();
   }
 
 

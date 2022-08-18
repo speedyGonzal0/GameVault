@@ -1,8 +1,31 @@
 import React from 'react'
 import "./GameRequests.css"
 import { Table, Button } from '@nextui-org/react';
+import axios from 'axios';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 function GameRequests() {
+
+
+    const [reqData, setReqData] = useState([]);
+
+    useEffect(() => {
+        axios.get("http://localhost:8080/gamerequest/all").then((response) => {
+            setReqData(response.data)
+            // console.log(response.data);
+        });
+
+    }, [reqData])
+
+
+    const reqDelHandler = (gameReqID) => {
+        axios.put(`http://localhost:8080/gamerequest/delete/${gameReqID}`).then((response) => {
+            console.log(response);
+        })
+    }
+
+
     return (
         <main className='gameRequestsContainer'>
             <h1>Game Requests</h1>
@@ -20,26 +43,24 @@ function GameRequests() {
                         <Table.Column>ACTION</Table.Column>
                     </Table.Header>
                     <Table.Body>
-                        <Table.Row key="1">
-                            <Table.Cell>Tony Reichert</Table.Cell>
-                            <Table.Cell>CEO</Table.Cell>
-                            <Table.Cell css={{ display: "flex", gap: "1.5em" }}> <Button bordered size="sm" color="success">Dismiss</Button> </Table.Cell>
-                        </Table.Row>
-                        <Table.Row key="2">
-                            <Table.Cell>Zoey Lang</Table.Cell>
-                            <Table.Cell>Technical Lead</Table.Cell>
-                            <Table.Cell>Paused</Table.Cell>
-                        </Table.Row>
-                        <Table.Row key="3">
-                            <Table.Cell>Jane Fisher</Table.Cell>
-                            <Table.Cell>Senior Developer</Table.Cell>
-                            <Table.Cell>Active</Table.Cell>
-                        </Table.Row>
-                        <Table.Row key="4">
-                            <Table.Cell>William Howard</Table.Cell>
-                            <Table.Cell>Community Manager</Table.Cell>
-                            <Table.Cell>Vacation</Table.Cell>
-                        </Table.Row>
+
+                        {reqData.length === 0 ?
+                            <Table.Row key="temp">
+                                <Table.Cell>N/A</Table.Cell>
+                                <Table.Cell>N/A</Table.Cell>
+                                <Table.Cell css={{ display: "flex", gap: "1.5em" }}> <Button bordered size="sm" color="success">N/A</Button> </Table.Cell>
+                            </Table.Row>
+
+                            :
+
+                            reqData.map((req) => (
+                                <Table.Row key={req.gameReqID}>
+                                    <Table.Cell>{req.gameReqID}</Table.Cell>
+                                    <Table.Cell>{req.gameReqName}</Table.Cell>
+                                    <Table.Cell css={{ display: "flex", gap: "1.5em" }}> <Button bordered size="sm" color="success" onClick={() => reqDelHandler(req.gameReqID)}>Dismiss</Button> </Table.Cell>
+                                </Table.Row>
+                            ))
+                        }
                     </Table.Body>
                 </Table>
 

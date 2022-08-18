@@ -3,6 +3,7 @@ import "./AddGame.css"
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { Input, Button, Textarea } from '@nextui-org/react';
+import axios from 'axios';
 
 function AddGame() {
 
@@ -16,7 +17,24 @@ function AddGame() {
 
     const submitGame = (e) => {
         e.preventDefault();
-        console.log("game submit")
+        axios.post("http://localhost:8080/game/create", {
+            name: name,
+            description: desc,
+            releasedate: date,
+            metarating: rating,
+            platforms: plats,
+            trailer: trailer,
+            coverImg: img
+        }).then((response) => {
+            if (response.data.message) {
+                console.log(response.data.message);
+            }
+            else {
+                console.log(response.data);
+            }
+        });
+        // console.log("game submit")
+        e.target.reset();
     }
 
 

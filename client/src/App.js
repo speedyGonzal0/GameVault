@@ -53,11 +53,11 @@ function App() {
   return (
     <NextUIProvider theme={theme}>
       <BrowserRouter>
-        {role === "Client" ? <Navbar login={isLoggedIn}/> : <AdminNavbar/> }        
+        {role === "Client" ? <Navbar login={isLoggedIn} setisLoggedIn={setisLoggedIn}/> : <AdminNavbar/> }        
         <main className="App">
           <Routes>
             <Route path='/' element={<Home/>}/>
-            <Route path='/login' element={<Login/>}/>
+            <Route path='/login' element={<Login setisLoggedIn={setisLoggedIn}/>}/>
             <Route path='/register' element={<Register/>}/>
             <Route path='/games' element={<AllGames/>}/>
             {/* <Route path='/searchgames' element={<SearchGames/>}/> */}
@@ -69,7 +69,7 @@ function App() {
             <Route path='/user/wishlist' element={<Wishlist/>}/>
             <Route path='/user/orders' element={<UserOrders/>}/>
             <Route path='/user/following' element={<Following/>}/>
-            <Route path='/checkout' element={<Checkout/>}/>
+            <Route path='/checkout/:id' element={<Checkout/>}/>
             <Route path='/reports/users' element={<ReportedUsers/>}/>
             <Route path='/reports/comments' element={<ReportedComments/>}/>
             <Route path='/requests' element={<GameRequests/>}/>

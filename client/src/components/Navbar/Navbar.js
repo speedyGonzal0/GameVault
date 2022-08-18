@@ -8,12 +8,14 @@ import { FiShoppingCart } from 'react-icons/fi'
 import { RiUserFollowLine } from 'react-icons/ri'
 import { AiOutlineSend } from 'react-icons/ai'
 import { useState } from 'react';
+import axios from 'axios';
 
-function Navbar({ login }) {
+function Navbar({ login, setisLoggedIn }) {
 
   let navigate = useNavigate();
 
   const [visible, setVisible] = useState(false);
+  const [gameReq, setGameReq] = useState();
 
   const openHandler = () => {
     setVisible(true);
@@ -24,8 +26,36 @@ function Navbar({ login }) {
   let id = 1;
 
   const handleLogout = () => {
-    navigate("/")
+    axios.get("http://localhost:8080/user/logout", {withCredentials : true}).then((response) => {
+      if (response.data.message) {
+        console.log(response.data.message);
+        navigate("/login");
+        setisLoggedIn(false)
+      }
+      else {
+        console.log(response.data);
+      }
+    });
+
   }
+
+  const gameReqHandler = () => {
+    axios.post("http://localhost:8080/gamerequest/create", {
+      gameReqName: gameReq
+    }).then((response) => {
+      if (response.data.message) {
+        console.log(response.data.message);
+        setGameReq("")
+        closeHandler();
+      }
+      else {
+        console.log(response.data);
+      }
+    });
+
+  }
+
+
   return (
     <nav className='navbar'>
       <div className="navbarLogo">
@@ -48,16 +78,16 @@ function Navbar({ login }) {
             <h2> Request a game </h2>
           </Modal.Header>
           <Modal.Body>
-            <Input bordered placeholder='Enter game name'/>
+            <Input bordered placeholder='Enter game name' onChange={(e) => setGameReq(e.target.value)} />
 
           </Modal.Body>
           <Modal.Footer justify='center'>
-            <Button shadow color="secondary" > Request </Button>
+            <Button shadow color="secondary" onClick={gameReqHandler}> Request </Button>
           </Modal.Footer>
         </Modal>
       </div>
 
-      {login ?
+      {document.cookie ?
         <div className="navbarLoggedIn">
           <Dropdown placement="bottom-left">
             <Dropdown.Trigger>

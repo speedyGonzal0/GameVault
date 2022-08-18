@@ -5,7 +5,9 @@ import ViewComment from '../../components/ViewComment/ViewComment';
 import PostComment from '../../components/PostComment/PostComment';
 import { BiBookmarkAltPlus } from 'react-icons/bi';
 import { IoGameControllerOutline } from 'react-icons/io5';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 function GameDetails() {
 
@@ -17,7 +19,26 @@ function GameDetails() {
     const [comments, setComments] = useState([]);
     const [commentText, setCommentText] = useState("")
 
+    const [game, setGame] = useState({ "name": "dummy",
+    "description": "dummy",
+    "releasedate": "dummy",
+    "metarating": "dummy",
+    "platforms": "dummy",
+    "trailer": "dummy",
+    "coverImg": "dummy"})
+
     let navigate = useNavigate();
+
+    let {id} = useParams();
+
+    useEffect(() => {
+        axios.get(`http://localhost:8080/game/${id}`).then((response) => {
+          setGame(response.data)
+          // console.log(response.data);
+        });
+    
+    }, [])
+
 
     const handleRating = (e) => {
         let score = e.target.value
@@ -36,15 +57,16 @@ function GameDetails() {
     }
 
   return (
+    
     <section className='gameDetailsContainer'>
-        <h1>Game Name</h1>
+        <h1>{game.name}</h1>
         <div className="gameDetailsTop">
             <figure className="gameDetailsImg">
-                <img src="https://www.kemperlesnik.com/wp-content/uploads/2020/04/valorant-official-art.jpg" alt="" />
+                <img src={game.coverImg} alt="" />
             </figure>
             <div className="gameDetailsDesc">
                 <h3>Description</h3>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam asperiores harum aliquid fuga quidem vero veritatis porro officiis accusantium voluptatem iusto repellat hic, aspernatur pariatur cupiditate eum odio nobis totam?</p>
+                <p>{game.description}</p>
             </div>
             
             <div className="gameDetailsInteractions">
@@ -58,7 +80,7 @@ function GameDetails() {
                 </div>
                     
                 }
-                <Button onClick={() => navigate("/checkout")} color="secondary" iconRight={ <IoGameControllerOutline size="1.5em" color='#ffffff'/>}>Rent game</Button>
+                <Button onClick={() => navigate(`/checkout/${game.gameID}`)} color="secondary" iconRight={ <IoGameControllerOutline size="1.5em" color='#ffffff'/>}>Rent game</Button>
                 <Button rounded bordered color="secondary" iconRight={ <BiBookmarkAltPlus size="1.5em"/> }> Add to wishlist </Button>
 
             </div>
@@ -66,21 +88,21 @@ function GameDetails() {
         <div className="gameDetailsInfo">
             <div className="gameDetailsDate">
                 <p> Release Date </p>
-                <h2> June 12, 2022 </h2>
+                <h2> {game.releasedate} </h2>
             </div>
             <div className="gameDetailsMeta">
                 <p> Metacritic Rating </p>
-                <h2> 4 / 5 </h2>
+                <h2> {game.metarating} </h2>
             </div>
             <div className="gameDetailsPlats">
                 <p> Platforms </p>
-                <h2>PC, XBOX, PS5</h2>
+                <h2>{game.platforms}</h2>
             </div>
         </div>
         <div className="gameDetailsTrailer">
             <h3> Trailer </h3>
             <iframe
-            src="https://www.youtube.com/embed/e_E9W2vsRbQ"
+            src={game.trailer}
             frameborder="0"
             allow="autoplay; encrypted-media"
             allowfullscreen="true"

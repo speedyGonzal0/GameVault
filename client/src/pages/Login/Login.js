@@ -3,8 +3,9 @@ import { useState } from 'react';
 import "./Login.css"
 import { useNavigate } from "react-router-dom";
 import { Input, Button } from '@nextui-org/react';
+import axios from 'axios';
 
-function Login() {
+function Login( {setisLoggedIn} ) {
 
     let navigate = useNavigate();
 
@@ -13,7 +14,21 @@ function Login() {
 
     const submitLogin = (e) => {
         e.preventDefault();
-        console.log("submit")
+        axios.post("http://localhost:8080/user/login", {
+            email: email,
+            password: pass
+        }).then((response) => {
+            if (response.data.role) {
+                console.log(response.data.role);
+                setisLoggedIn(true)
+                navigate("/games")
+            }
+            else {
+                console.log(response.data);
+            }
+        });
+        // console.log("game submit")
+        // e.target.reset();
     }
 
     return (

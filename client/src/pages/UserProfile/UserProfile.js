@@ -3,6 +3,8 @@ import "./UserProfile.css"
 import { Input, Button } from '@nextui-org/react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import axios from 'axios';
 import ViewComment from '../../components/ViewComment/ViewComment';
 
 function UserProfile() {
@@ -27,6 +29,17 @@ function UserProfile() {
   }
 
   const handleEmailSubmit = (e) => {
+    axios.put("http://localhost:8080/user/update", {
+      email: email
+    }, {withCredentials: true}).then((response) => {
+      if (response.data.message) {
+        console.log(response.data.message);
+        // navigate("/login")
+      }
+      else {
+        console.log(response.data);
+      }
+    });   
     setEmailUpd(true)
   }
 
@@ -36,6 +49,17 @@ function UserProfile() {
   }
 
   const handlePassSubmit = (e) => {
+    axios.put("http://localhost:8080/user/update", {
+      password: pass
+    }, {withCredentials: true}).then((response) => {
+      if (response.data.message) {
+        console.log(response.data.message);
+        // navigate("/login")
+      }
+      else {
+        console.log(response.data);
+      }
+    });    
     setPassUpd(true)
   }
 
@@ -45,6 +69,17 @@ function UserProfile() {
   }
 
   const handleImgSubmit = (e) => {
+    axios.put("http://localhost:8080/user/update", {
+      img: img
+    }, {withCredentials: true}).then((response) => {
+      if (response.data.message) {
+        console.log(response.data.message);
+        // navigate("/login")
+      }
+      else {
+        console.log(response.data);
+      }
+    });
     setImgUpd(true)
   }
 
@@ -54,8 +89,35 @@ function UserProfile() {
   }
 
   const handlePhnSubmit = (e) => {
+    axios.put("http://localhost:8080/user/update", {
+      phone: phn
+    }, {withCredentials: true}).then((response) => {
+      if (response.data.message) {
+        console.log(response.data.message);
+        // navigate("/login")
+      }
+      else {
+        console.log(response.data);
+      }
+    });
     setPhnUpd(true)
   }
+
+  const [user, setUser] = useState({})
+  const [orders, setOrders] = useState([])
+
+  useEffect(() => {
+    axios.get(`http://localhost:8080/user/details`, {withCredentials: true}).then((response) => {
+      setUser(response.data)
+      // console.log(response.data);
+    });
+
+    axios.get(`http://localhost:8080/orders/user`, {withCredentials: true}).then((response) => {
+      setOrders(response.data)
+      // console.log(response.data);
+    });
+
+}, [emailUpd, passUpd, phnUpd, imgUpd])
 
 
   return (
@@ -63,10 +125,10 @@ function UserProfile() {
       <h1> Profile </h1>
       <div className="userProfileTop">
         <figure className='userProfileImg'>
-          <img src="https://images7.alphacoders.com/749/thumb-1920-749807.png" alt="" />
+          <img src={user.img} alt="" />
         </figure>
         <div className="userProfileDesc">
-          <h3> User name </h3>
+          <h3> {user.name} </h3>
           <div className="userProfileInfo">
             <div className="userPofileInfoLeft">
               <p>Email:</p>
@@ -75,10 +137,10 @@ function UserProfile() {
               <p> Phone: </p>
             </div>
             <div className="userProfileInfoMid">
-              <Input bordered placeholder='user email' onChange={(e) => handleEmailChange(e)} />
-              <Input bordered placeholder='user pass' onChange={(e) => handlePassChange(e)} />
-              <Input bordered placeholder='image url' onChange={(e) => handleImgChange(e)} />
-              <Input bordered placeholder='user Phone' onChange={(e) => handlePhnChange(e)} />
+              <Input bordered placeholder={user.email} onChange={(e) => handleEmailChange(e)} />
+              <Input bordered placeholder={user.password} onChange={(e) => handlePassChange(e)} />
+              <Input bordered placeholder={user.img} onChange={(e) => handleImgChange(e)} />
+              <Input bordered placeholder={user.phone} onChange={(e) => handlePhnChange(e)} />
             </div>
             <div className="userProfileInfoRight">
               <Button disabled={emailUpd} color="secondary" onClick={handleEmailSubmit}> Update </Button>
@@ -91,7 +153,7 @@ function UserProfile() {
         <div className="userProfileHist">
           <div className="userProfileHistSection">
             <h3> Total orders </h3>
-            <h1> 43 </h1>
+            <h1> {orders.length} </h1>
             <Button bordered size="sm" color="secondary" onClick={() => navigate("/user/orders")}> See Orders </Button>
           </div>
           <div className="userProfileHistSection">

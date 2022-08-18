@@ -2,17 +2,17 @@ import React from 'react'
 import "./UserSummary.css"
 import { useNavigate } from 'react-router-dom';
 
-function UserSummary() {
+function UserSummary( {user} ) {
 
     let navigate = useNavigate();
 
   return (
-    <article className='userSummaryTile' onClick={() => navigate("/user/1")}>
+    <article className='userSummaryTile' onClick={() => navigate(`/user/${user.userID}`)}>
         <figure className="userSummaryImg">
-          <img src="https://images7.alphacoders.com/749/thumb-1920-749807.png" alt="" />          
+          <img src={user.img} alt="" />          
         </figure>
-        <h3> User name </h3>
-        <p> User email </p>
+        <h3> {user.name} </h3>
+        <p> {user.email} </p>
     </article>
   )
 }
