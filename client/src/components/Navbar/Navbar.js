@@ -33,9 +33,10 @@ function Navbar({ login }) {
       </div>
       <div className="navbarLinks">
         <Link to="/"> <b>Home</b> </Link>
-        <Link to="games"> <b>All games</b> </Link>
+        <Link to="games"> <b>Games</b> </Link>
         {/* <Link to="searchgames"> <b>Search games</b> </Link> */}
         <Link to="searchusers"> <b>Search users</b> </Link>
+        <b onClick={openHandler}>Request game</b>
         <Modal
           closeButton
           // blur
@@ -47,7 +48,7 @@ function Navbar({ login }) {
             <h2> Request a game </h2>
           </Modal.Header>
           <Modal.Body>
-            <Input bordered placeholder='Name of the game'/>
+            <Input bordered placeholder='Enter game name'/>
 
           </Modal.Body>
           <Modal.Footer justify='center'>
@@ -86,7 +87,7 @@ function Navbar({ login }) {
               <Dropdown.Item key="following" icon={<RiUserFollowLine />}> <p onClick={() => navigate("/user/following")}>Followed users</p></Dropdown.Item>
               <Dropdown.Item key="wishlist" icon={<BiBookmarkAltPlus />}> <p onClick={() => navigate("/user/wishlist")}>Wishlist</p></Dropdown.Item>
               <Dropdown.Item key="rents" icon={<FiShoppingCart />}> <p onClick={() => navigate("/user/orders")}>Orders</p></Dropdown.Item>
-              <Dropdown.Item key="request" icon={<AiOutlineSend />}> <p onClick={openHandler}>Request game</p></Dropdown.Item>
+              {/* <Dropdown.Item key="request" icon={<AiOutlineSend />}> <p onClick={openHandler}>Request game</p></Dropdown.Item> */}
 
               <Dropdown.Item key="logout" color="error" withDivider>
                 <div onClick={handleLogout}> <b>Log Out</b> </div>
@@ -97,8 +98,8 @@ function Navbar({ login }) {
         </div>
         :
         <div className="navbarLogin">
-          <Button size="sm" shadow color="secondary">Log in</Button>
-          <Button size="sm" bordered color="secondary">Sign up</Button>
+          <Button size="sm" shadow color="secondary" onClick={() => navigate("/login")}>Log in</Button>
+          <Button size="sm" bordered color="secondary" onClick={() => navigate("/register")}>Sign up</Button>
         </div>
       }
 

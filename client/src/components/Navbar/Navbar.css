@@ -44,6 +44,10 @@
     gap: 8%;
 }
 
+.navbarLinks b{
+    cursor: pointer;
+}
+
 .navbarLogin{
     display: flex;
     flex: 2;

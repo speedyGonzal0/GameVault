@@ -5,6 +5,7 @@ import ViewComment from '../../components/ViewComment/ViewComment';
 import PostComment from '../../components/PostComment/PostComment';
 import { BiBookmarkAltPlus } from 'react-icons/bi';
 import { IoGameControllerOutline } from 'react-icons/io5';
+import { useNavigate } from 'react-router-dom';
 
 function GameDetails() {
 
@@ -15,6 +16,8 @@ function GameDetails() {
     const [submitDisabled, setSubmitDisabled] = useState(true)
     const [comments, setComments] = useState([]);
     const [commentText, setCommentText] = useState("")
+
+    let navigate = useNavigate();
 
     const handleRating = (e) => {
         let score = e.target.value
@@ -55,7 +58,7 @@ function GameDetails() {
                 </div>
                     
                 }
-                <Button color="secondary" onClick={() => setRated(false)} iconRight={ <IoGameControllerOutline size="1.5em" color='#ffffff'/>}>Rent game</Button>
+                <Button onClick={() => navigate("/checkout")} color="secondary" iconRight={ <IoGameControllerOutline size="1.5em" color='#ffffff'/>}>Rent game</Button>
                 <Button rounded bordered color="secondary" iconRight={ <BiBookmarkAltPlus size="1.5em"/> }> Add to wishlist </Button>
 
             </div>

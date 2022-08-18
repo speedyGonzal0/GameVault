@@ -1,7 +1,6 @@
 import React from 'react'
 import "./AllGames.css"
 import GameSummary from '../../components/GameSummary/GameSummary'
-import { Button, Input } from "@nextui-org/react";
 import { useState } from 'react';
 // import { Pagination } from '@nextui-org/react';
 
@@ -22,7 +21,7 @@ function AllGames() {
 
   return (
     <div className='allGamesPage'>
-      <h1> All Games </h1>
+      <h1> Games </h1>
       <input type="text" placeholder='Search a game' onChange={(e) => setSearchedGame(e.target.value)}/>
 
       <GameSummary />

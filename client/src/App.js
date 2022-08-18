@@ -15,10 +15,13 @@ import Wishlist from './pages/Wishlist/Wishlist';
 import UserOrders from './pages/UserOrders/UserOrders';
 import Following from './pages/Following/Following';
 import VisitProfile from './pages/VisitProfile/VisitProfile';
+import Login from './pages/Login/Login';
+import Register from './pages/Register/Register';
+import Checkout from './pages/Checkout/Checkout';
 
 function App() {
 
-  const [isLoggedIn, setisLoggedIn] = useState(true)
+  const [isLoggedIn, setisLoggedIn] = useState(false)
 
   const theme = createTheme({
     type: "dark", // it could be "light" or "dark"
@@ -47,6 +50,8 @@ function App() {
         <main className="App">
           <Routes>
             <Route path='/' element={<Home/>}/>
+            <Route path='/login' element={<Login/>}/>
+            <Route path='/register' element={<Register/>}/>
             <Route path='/games' element={<AllGames/>}/>
             {/* <Route path='/searchgames' element={<SearchGames/>}/> */}
             <Route path='/games/:id' element={<GameDetails/>}/>
@@ -57,6 +62,7 @@ function App() {
             <Route path='/user/wishlist' element={<Wishlist/>}/>
             <Route path='/user/orders' element={<UserOrders/>}/>
             <Route path='/user/following' element={<Following/>}/>
+            <Route path='/checkout' element={<Checkout/>}/>
             <Route path='*' element={<ErrorPage/>}/>
           </Routes>
         </main>

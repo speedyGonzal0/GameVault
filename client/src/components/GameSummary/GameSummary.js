@@ -30,7 +30,7 @@ function GameSummary() {
         </div>
         <div className="gameSummaryLinks">
           <Button color = "secondary" bordered onClick={() => navigate(`/games/${id}`)}>View Game Details</Button>
-          <Button color = "secondary">Rent Game</Button>
+          <Button color = "secondary" onClick={() => navigate("/checkout")}>Rent Game</Button>
         </div>
       </div>
       
