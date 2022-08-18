@@ -18,16 +18,20 @@ public class CommentService {
         return commentRepository.findAll();
     }
 
+    public Comment getCommentByID(Integer cmntID){
+        return commentRepository.findById(cmntID).get();
+    }
+
     public List<Comment> getGameComments(Integer gameID){
-        return commentRepository.findAllByGame_GameID(gameID);
+        return commentRepository.findAllByGame_GameIDAndDeletedFalse(gameID);
     }
 
     public List<Comment> getUserComments(Integer userID){
-        return commentRepository.findAllByUser_UserID(userID);
+        return commentRepository.findAllByUser_UserIDAndDeletedFalse(userID);
     }
 
     public List<Comment> getUserCommentsByEmail(String email){
-        return commentRepository.findAllByUser_Email(email);
+        return commentRepository.findAllByUser_EmailAndDeletedFalse(email);
     }
 
     public void createComment(Comment comment){

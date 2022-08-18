@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Input, Button } from '@nextui-org/react';
 import axios from 'axios';
 
-function Login( {setisLoggedIn} ) {
+function Login( {setisLoggedIn, setRole} ) {
 
     let navigate = useNavigate();
 
@@ -18,10 +18,15 @@ function Login( {setisLoggedIn} ) {
             email: email,
             password: pass
         }).then((response) => {
-            if (response.data.role) {
+            if (response.data.role === "Client") {
+                setRole("Client")
                 console.log(response.data.role);
                 setisLoggedIn(true)
                 navigate("/games")
+            }
+            else if(response.data.role === "Admin"){
+                setRole("Admin")
+                navigate("/addgame")
             }
             else {
                 console.log(response.data);

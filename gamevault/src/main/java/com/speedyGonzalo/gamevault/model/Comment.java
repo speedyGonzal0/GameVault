@@ -1,9 +1,11 @@
 package com.speedyGonzalo.gamevault.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Set;
 
 @Entity
 public class Comment {
@@ -19,6 +21,8 @@ public class Comment {
     @JsonFormat(pattern="yyyy-MM-dd")
     private java.sql.Date commentDate;
 
+    private boolean deleted;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "userID")
     private User user;
@@ -26,6 +30,10 @@ public class Comment {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "game_id", referencedColumnName = "gameID")
     private Game game;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "comment")
+    private Set<ReportedComment> reportedComments;
 
     public Comment() {
     }
@@ -76,5 +84,17 @@ public class Comment {
 
     public void setGame(Game game) {
         this.game = game;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
+
+    public Set<ReportedComment> getReportedComments() {
+        return reportedComments;
     }
 }

@@ -31,7 +31,7 @@ function UserProfile() {
   const handleEmailSubmit = (e) => {
     axios.put("http://localhost:8080/user/update", {
       email: email
-    }, {withCredentials: true}).then((response) => {
+    }, { withCredentials: true }).then((response) => {
       if (response.data.message) {
         console.log(response.data.message);
         // navigate("/login")
@@ -39,7 +39,7 @@ function UserProfile() {
       else {
         console.log(response.data);
       }
-    });   
+    });
     setEmailUpd(true)
   }
 
@@ -51,7 +51,7 @@ function UserProfile() {
   const handlePassSubmit = (e) => {
     axios.put("http://localhost:8080/user/update", {
       password: pass
-    }, {withCredentials: true}).then((response) => {
+    }, { withCredentials: true }).then((response) => {
       if (response.data.message) {
         console.log(response.data.message);
         // navigate("/login")
@@ -59,7 +59,7 @@ function UserProfile() {
       else {
         console.log(response.data);
       }
-    });    
+    });
     setPassUpd(true)
   }
 
@@ -71,7 +71,7 @@ function UserProfile() {
   const handleImgSubmit = (e) => {
     axios.put("http://localhost:8080/user/update", {
       img: img
-    }, {withCredentials: true}).then((response) => {
+    }, { withCredentials: true }).then((response) => {
       if (response.data.message) {
         console.log(response.data.message);
         // navigate("/login")
@@ -91,7 +91,7 @@ function UserProfile() {
   const handlePhnSubmit = (e) => {
     axios.put("http://localhost:8080/user/update", {
       phone: phn
-    }, {withCredentials: true}).then((response) => {
+    }, { withCredentials: true }).then((response) => {
       if (response.data.message) {
         console.log(response.data.message);
         // navigate("/login")
@@ -105,19 +105,25 @@ function UserProfile() {
 
   const [user, setUser] = useState({})
   const [orders, setOrders] = useState([])
+  const [comments, setComments] = useState([])
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/user/details`, {withCredentials: true}).then((response) => {
+    axios.get(`http://localhost:8080/user/details`, { withCredentials: true }).then((response) => {
       setUser(response.data)
       // console.log(response.data);
     });
 
-    axios.get(`http://localhost:8080/orders/user`, {withCredentials: true}).then((response) => {
+    axios.get(`http://localhost:8080/orders/user`, { withCredentials: true }).then((response) => {
       setOrders(response.data)
       // console.log(response.data);
     });
 
-}, [emailUpd, passUpd, phnUpd, imgUpd])
+    axios.get(`http://localhost:8080/comment/user`, { withCredentials: true }).then((response) => {
+      setComments(response.data)
+      // console.log(response.data);
+    });
+
+  }, [emailUpd, passUpd, phnUpd, imgUpd])
 
 
   return (
@@ -170,11 +176,19 @@ function UserProfile() {
       <div className="userProfileComments">
         <h3> All comments </h3>
         <div className="userProfileCommentsDetails">
-          <div className="userProfileCommentGame">
-            <h3>Game name</h3>
-            <Button color="secondary" size="sm" onClick={() => navigate("/games/1")}> View game </Button>
-          </div>
-          <ViewComment />
+
+          {comments.length === 0 ? <></> :
+            comments.map((comment) => (
+              <div className="userProfileCommentContainer" key={comment.commentID}>
+                <div className="userProfileCommentGame">
+                  <h3>{ comment.game.name}</h3>
+                  <Button color="secondary" size="sm" onClick={() => navigate(`/games/${comment.game.gameID}`)}> View game </Button>
+                </div>
+                <ViewComment comment={comment} />
+              </div>
+
+            ))
+          }
         </div>
       </div>
 

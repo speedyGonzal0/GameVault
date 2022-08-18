@@ -39,6 +39,14 @@ public class Game {
     @OneToMany(mappedBy = "game")
     private Set<Comment> comments;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "game")
+    private Set<Wishlist> wishlists;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "game")
+    private Set<Rating> ratings;
+
     public Game() {
     }
 
@@ -110,6 +118,7 @@ public class Game {
         return order;
     }
 
-
-
+    public Set<Rating> getRatings() {
+        return ratings;
+    }
 }

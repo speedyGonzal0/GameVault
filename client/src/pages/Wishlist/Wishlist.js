@@ -2,8 +2,33 @@ import React from 'react'
 import "./Wishlist.css"
 import { Table, Button } from '@nextui-org/react';
 import { AiOutlineDelete } from 'react-icons/ai';
+import axios from 'axios';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 function Wishlist() {
+
+
+  const [wishlists, setWishlists] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:8080/wishlist/user", {withCredentials: true}).then((response) => {
+      setWishlists(response.data)
+      // console.log(response.data);
+    });
+
+  }, [])
+
+
+  const removeHandler = (wishID) => {
+    axios.put(`http://localhost:8080/wishlist/delete/${wishID}`).then((response) => {
+      // setWishlists(response.data)
+      console.log(response.data);
+    });
+
+  }
+
+
   return (
     <main className='wishlistContainer'>
       <h1>Wishlist</h1>
@@ -21,26 +46,23 @@ function Wishlist() {
             <Table.Column>ACTION</Table.Column>
           </Table.Header>
           <Table.Body>
-            <Table.Row key="1">
-              <Table.Cell>Tony Reichert</Table.Cell>
-              <Table.Cell>CEO</Table.Cell>
-              <Table.Cell> <Button iconRight={<AiOutlineDelete size="1.25em"/>} bordered color="error" size="sm"> Remove </Button> </Table.Cell>
-            </Table.Row>
-            <Table.Row key="2">
-              <Table.Cell>Zoey Lang</Table.Cell>
-              <Table.Cell>Technical Lead</Table.Cell>
-              <Table.Cell>Paused</Table.Cell>
-            </Table.Row>
-            <Table.Row key="3">
-              <Table.Cell>Jane Fisher</Table.Cell>
-              <Table.Cell>Senior Developer</Table.Cell>
-              <Table.Cell>Active</Table.Cell>
-            </Table.Row>
-            <Table.Row key="4">
-              <Table.Cell>William Howard</Table.Cell>
-              <Table.Cell>Community Manager</Table.Cell>
-              <Table.Cell>Vacation</Table.Cell>
-            </Table.Row>
+            {wishlists.length === 0 ?
+              <Table.Row key="temp">
+                <Table.Cell>N/A</Table.Cell>
+                <Table.Cell>N/A</Table.Cell>
+                <Table.Cell css={{ display: "flex", gap: "1.5em" }}> <Button bordered size="sm" color="success">N/A</Button> </Table.Cell>
+              </Table.Row>
+
+              :
+
+              wishlists.map((wishlist, idx) => (
+                <Table.Row key={wishlist.wishID}>
+                  <Table.Cell>{idx + 1}</Table.Cell>
+                  <Table.Cell>{wishlist.game.name}</Table.Cell>
+                  <Table.Cell css={{ display: "flex", gap: "1.5em" }}> <Button bordered size="sm" color="success" onClick={() => removeHandler(wishlist.wishID)}>Remove</Button> </Table.Cell>
+                </Table.Row>
+              ))
+            }
           </Table.Body>
         </Table>
 

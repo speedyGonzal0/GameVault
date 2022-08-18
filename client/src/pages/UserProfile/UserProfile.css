@@ -109,11 +109,18 @@
 
 .userProfileCommentsDetails{
     display: flex;
+    flex-direction: column;
     width: 100%;
     justify-content: center;
     /* background-color: #adb5bd; */
     gap: 1.5em;
 
+}
+
+.userProfileCommentContainer{
+    display: flex;
+    /* background-color: #adb5bd; */
+    justify-content: space-evenly;
 }
 
 .userProfileCommentGame{

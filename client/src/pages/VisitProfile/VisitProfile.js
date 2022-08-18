@@ -17,6 +17,8 @@ function VisitUserProfile() {
 
   const [user, setUser] = useState({})
   const [orders, setOrders] = useState([])
+  const [comments, setComments] = useState([])
+  const [wishlists, setWishlists] = useState([])
 
   useEffect(() => {
     axios.get(`http://localhost:8080/user/${id}`).then((response) => {
@@ -26,6 +28,16 @@ function VisitUserProfile() {
 
     axios.get(`http://localhost:8080/orders/user/${id}`).then((response) => {
       setOrders(response.data)
+      // console.log(response.data);
+    });
+
+    axios.get(`http://localhost:8080/comment/user/${id}`).then((response) => {
+      setComments(response.data)
+      // console.log(response.data);
+    });
+
+    axios.get(`http://localhost:8080/wishlist/user/${id}`).then((response) => {
+      setWishlists(response.data)
       // console.log(response.data);
     });
 
@@ -44,7 +56,7 @@ function VisitUserProfile() {
           <p>Email : {user.email} </p>
           <div className="visitProfileInfo">            
             <p>Orders: {orders.length}</p>
-            <p>Comments: 5</p>
+            <p>Comments: {comments.length }</p>
             <p>Wishlisted games: 9 </p>
           </div>
           
@@ -60,10 +72,26 @@ function VisitUserProfile() {
       </div>
       <div className="visitProfileComments">
         <h3>User Comments</h3>
-        <ViewComment/>
+        {comments.length === 0 ? <></>: 
+          comments.map((comment) => (
+            <div className="visitProfileCommentContainer" key={comment.commentID}>
+              <div className="visitProfileCommentGame">
+                <h3>{ comment.game.name}</h3>
+                <Button color="secondary" size="sm" onClick={() => navigate(`/games/${comment.game.gameID}`)}> View game </Button>
+              </div>
+              <ViewComment comment={comment} />
+            </div>
+
+          ))
+        }
       </div>
       <div className="visitProfileGames">
         <h3>Wishlisted games</h3>
+        {wishlists.length === 0 ? <></> :
+          wishlists.map((wishlist) => (
+            <GameSummary key={wishlist.wishID} game={wishlist.game}/> 
+          ))
+        }
         {/* <GameSummary/> */}
       </div>
 

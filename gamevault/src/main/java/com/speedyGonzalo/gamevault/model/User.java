@@ -37,6 +37,14 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<Comment> comments = new HashSet<>();
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private Set<Wishlist> wishlists = new HashSet<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private Set<Rating> ratings = new HashSet<>();
+
     public User() {
     }
 
@@ -105,5 +113,9 @@ public class User {
 
     public Set<Orders> getOrders() {
         return orders;
+    }
+
+    public Set<Wishlist> getWishlists() {
+        return wishlists;
     }
 }
