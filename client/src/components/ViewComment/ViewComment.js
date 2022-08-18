@@ -70,9 +70,9 @@ function ViewComment() {
                     <BiDownvote size="1.25em" color={downvote ? "#f4a261" : ""} cursor="pointer" onClick={ handleDownvotes }/>
                     <p>Downvote</p>
                 </div>
-                <div className="viewCommentDel" style={ belongsToUser ? {} : {display: "none"}}>
+                {/* <div className="viewCommentDel" style={ belongsToUser ? {} : {display: "none"}}>
                     <AiOutlineDelete size="1.25em"/>
-                </div>
+                </div> */}
             </div>         
             <div className="viewCommentReport">
                 <Button size="sm" bordered color="error" iconRight={<AiOutlineWarning size="1.5em"/>}> Report </Button>

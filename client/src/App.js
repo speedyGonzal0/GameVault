@@ -18,10 +18,17 @@ import VisitProfile from './pages/VisitProfile/VisitProfile';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Checkout from './pages/Checkout/Checkout';
+import AdminNavbar from './components/AdminNavbar/AdminNavbar';
+import ReportedUsers from './pages/ReportedUsers/ReportedUsers';
+import ReportedComments from './pages/ReportedComments/ReportedComments';
+import GameRequests from './pages/GameRequests/GameRequests';
+import AddGame from './pages/AddGame/AddGame';
+import BannedUsers from './pages/BannedUsers/BannedUsers';
 
 function App() {
 
   const [isLoggedIn, setisLoggedIn] = useState(false)
+  const [role, setRole] = useState("Client")
 
   const theme = createTheme({
     type: "dark", // it could be "light" or "dark"
@@ -46,7 +53,7 @@ function App() {
   return (
     <NextUIProvider theme={theme}>
       <BrowserRouter>
-        <Navbar login={isLoggedIn}/>
+        {role === "Client" ? <Navbar login={isLoggedIn}/> : <AdminNavbar/> }        
         <main className="App">
           <Routes>
             <Route path='/' element={<Home/>}/>
@@ -63,6 +70,11 @@ function App() {
             <Route path='/user/orders' element={<UserOrders/>}/>
             <Route path='/user/following' element={<Following/>}/>
             <Route path='/checkout' element={<Checkout/>}/>
+            <Route path='/reports/users' element={<ReportedUsers/>}/>
+            <Route path='/reports/comments' element={<ReportedComments/>}/>
+            <Route path='/requests' element={<GameRequests/>}/>
+            <Route path='/addgame' element={<AddGame/>}/>
+            <Route path='/bans' element={<BannedUsers/>}/>
             <Route path='*' element={<ErrorPage/>}/>
           </Routes>
         </main>

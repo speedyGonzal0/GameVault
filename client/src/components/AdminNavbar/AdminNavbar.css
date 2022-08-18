@@ -1,0 +1,56 @@
+.adminNavbar{
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    background-color: #181818;
+    position: sticky;
+    color: white;
+    height: 7vh;
+    /* top: 0; */
+    
+}
+
+.adminNavbar a{
+    color: white;
+}
+
+.adminNavbar a:visited{
+    color: white;
+}
+
+
+.adminNavbarLogo{
+    display: flex;
+    flex: 2;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.5%;
+    /* background-color: yellowgreen; */
+    height: 100%;
+}
+
+.adminNavbarLogo h2:hover{
+    cursor: pointer;
+}
+
+.adminNavbarLinks{
+    display: flex;
+    flex: 5;
+    align-items: center;
+    justify-content: center;
+    /* justify-content: space-between; */
+    /* background-color: pink; */
+    height: 100%;
+    gap: 8%;
+}
+
+
+.adminNavbarLogout{
+    display: flex;
+    flex: 2;
+    align-items: center;
+    justify-content: center;
+    gap: 8%;
+    /* background-color:wheat; */
+    height: 100%;
+}
